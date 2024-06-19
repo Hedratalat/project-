@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:project/photoCertificate.dart';
+import 'package:project/Certificate/photoCertificate.dart';
 
 
 class certificatesScreen extends StatefulWidget {
@@ -9,6 +9,14 @@ class certificatesScreen extends StatefulWidget {
 }
 
 class _certificatesScreenState extends State<certificatesScreen> {
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController certificateTypeController = TextEditingController();
+  final TextEditingController    imageUrlController = TextEditingController();
+
+  String? selectecertificates;
+
   Color mainColor = Color(0xFF5B8AB0);
   Color backgroundColor = Color(0xFFF5F5F5);
   Color textColor = Color(0xFF294964);
@@ -44,6 +52,7 @@ class _certificatesScreenState extends State<certificatesScreen> {
                     child: Image.asset('images/certificatescreen.png'),
                   ),
                   TextFormField(
+                    controller: usernameController,
                     decoration: InputDecoration(
                       labelText: 'Student Name',
                       prefixIcon: Icon(Icons.person),
@@ -52,7 +61,7 @@ class _certificatesScreenState extends State<certificatesScreen> {
                   ),
                   SizedBox(height: 35),
                   DropdownButtonFormField<String>(
-                    value: selectedCertificate,
+                    value: selectecertificates,
                     onChanged: (newValue) {
                       setState(() {
                         selectedCertificate = newValue;

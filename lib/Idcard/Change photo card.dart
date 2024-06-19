@@ -1,28 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-import 'Services.dart';
-
-
-//void main() => runApp(Idcard());
+import '../Services.dart';
 
 class Idcard extends StatelessWidget {
+  final TextEditingController levelController = TextEditingController();
+  final TextEditingController avatarController = TextEditingController();
+  final TextEditingController studentIdController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProfilePage(),
+      home: ProfilePage(levelController: levelController),
     );
   }
 }
 
 class ProfilePage extends StatefulWidget {
+  final TextEditingController levelController;
+
+  ProfilePage({required this.levelController});
+
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  TextEditingController _nameController = TextEditingController();
   File? _image;
   final picker = ImagePicker();
 
@@ -37,7 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void _confirm() {
-    if (_nameController.text.isNotEmpty && _image != null) {
+    if (widget.levelController.text.isNotEmpty && _image != null) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -82,11 +86,13 @@ class _ProfilePageState extends State<ProfilePage> {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: mainColor,
-        title: Text('Change Photo Card', style: TextStyle(
-        color: Colors.white,),
+        title: Text(
+          'Change Photo Card',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
-      ),
-
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -99,9 +105,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               TextField(
-                controller: _nameController,
-                decoration: InputDecoration(labelText: 'Student Name', prefixIcon: Icon(Icons.person),
-            border: OutlineInputBorder(),),
+                controller: widget.levelController,
+                decoration: InputDecoration(
+                  labelText: 'Student Name',
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(),
+                ),
               ),
               SizedBox(height: 20),
               _image == null
@@ -110,10 +119,12 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _pickImage,
-                child: Text('Upload New Picture'), style: ElevatedButton.styleFrom(
-                backgroundColor: mainColor, foregroundColor: Colors.white,
-              ),
+                child: Text('Upload New Picture'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: mainColor,
+                  foregroundColor: Colors.white,
                 ),
+              ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _confirm,
