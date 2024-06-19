@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'Activities.dart';
-import 'Certificates.dart';
-import 'Change photo card.dart';
+import 'Activities/Activities.dart';
+import 'Certificate/Certificates.dart';
+import 'Idcard/Change photo card.dart';
 import 'Complaints.dart';
 import 'Course Registration.dart';
 import 'Scholarships.dart';

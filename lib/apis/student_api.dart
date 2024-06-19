@@ -10,25 +10,22 @@ import '../constants.dart';
 
 
 class StudentApi {
-  final dio = Dio(BaseOptions(baseUrl:apiBaseUrl));
+  final dio = Dio(BaseOptions(baseUrl: apiBaseUrl));
 
-  Future<dynamic> getRegister(
-      String name,
+  Future<dynamic> getRegister(String name,
       String email,
       String password,
       String gmail,
       String role,
       String address,
       String phone,
-      int dateOfBrith,
-
-      ) async {
-
-print("MERNA"+name+" "+email+" "+password+" "+gmail+" "+role+" "+address+" "+phone+" "+dateOfBrith.toString());
+      int dateOfBrith,) async {
+    print("MERNA" + name + " " + email + " " + password + " " + gmail + " " +
+        role + " " + address + " " + phone + " " + dateOfBrith.toString());
 
     final Map<String, dynamic> userData = {
       "name": name, // Placeholder value
-      "email":email,
+      "email": email,
       "password": password,
       "gmail": gmail,
       "role": role,
@@ -55,15 +52,14 @@ print("MERNA"+name+" "+email+" "+password+" "+gmail+" "+role+" "+address+" "+pho
       if (response.statusCode == 201) {
         return response.data;
       } else if (response.statusCode == 400) {
-        return   Get.snackbar(
+        return Get.snackbar(
           "",
           "Username already exists",
           colorText: Colors.white,
           backgroundColor: Colors.red,
           // icon: const Icon(Icons.add_alert),
         );
-
-      }else {
+      } else {
         return null;
       }
     } catch (e) {
@@ -94,7 +90,130 @@ print("MERNA"+name+" "+email+" "+password+" "+gmail+" "+role+" "+address+" "+pho
     }
   }
 
+/////////////////////////////////////////
+
+  Future<dynamic> getcertificatesScreen(String name,
+      String certificateType,
+      String imageUrl,) async {
+    print("" + name + " " + certificateType + " " + imageUrl + " ".toString());
+
+    final Map<String, dynamic> certificatesScreenData = {
+      "name": name,
+      "certificateType": certificateType,
+      "imageUrl": imageUrl,
 
 
+    };
+
+    try {
+      final response = await dio.post(
+        'certificates',
+        data: certificatesScreenData,
+      );
+
+      if (response.statusCode == 201) {
+        return response.data;
+      } else if (response.statusCode == 400) {
+        return   Get.snackbar(
+          "",
+          "Username already exists",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          // icon: const Icon(Icons.add_alert),
+        );
+
+      }else {
+        return null;
+      }
+    } catch (e) {
+      print("Error: $e");
+      return null;
+    }
+  }
+
+/////////////////////////////////////////
+
+  Future<dynamic> getIdcard(
+      String level,
+      String avatar,
+      String studentId,
+      ) async {
+    print("" + level + " " + avatar + " " + studentId + " ".toString());
+
+    final Map<String, dynamic> IdcardData = {
+      "level": level,
+      "avatar": avatar,
+      "studentId": studentId,
+
+
+    };
+
+    try {
+      final response = await dio.post(
+        'IdcardData',
+        data: IdcardData,
+      );
+
+      if (response.statusCode == 201) {
+        return response.data;
+      } else if (response.statusCode == 400) {
+        return   Get.snackbar(
+          "",
+          "Username already exists",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          // icon: const Icon(Icons.add_alert),
+        );
+
+      }else {
+        return null;
+      }
+    } catch (e) {
+      print("Error: $e");
+      return null;
+    }
+  }
+/////////////////////////////////////////
+  Future<dynamic> getActivities(
+      String name,
+      String typeactivity,
+
+      ) async {
+    print("" + name + " " + typeactivity + " ".toString());
+
+    final Map<String, dynamic> ActivitiesData = {
+      "name": name,
+      "typeactivity": typeactivity,
+
+
+
+    };
+
+    try {
+      final response = await dio.post(
+        'Activities',
+        data: ActivitiesData,
+      );
+
+      if (response.statusCode == 201) {
+        return response.data;
+      } else if (response.statusCode == 400) {
+        return   Get.snackbar(
+          "",
+          "Username already exists",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          // icon: const Icon(Icons.add_alert),
+        );
+
+      }else {
+        return null;
+      }
+    } catch (e) {
+      print("Error: $e");
+      return null;
+    }
+  }
+/////////////////////////////////////////
 
 }

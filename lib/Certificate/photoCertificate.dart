@@ -8,6 +8,9 @@ class photoCertificate extends StatelessWidget {
 
   Color textColor = Color(0xFF294964);
 
+  final TextEditingController    imageUrlController = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
