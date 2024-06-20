@@ -17,7 +17,7 @@ class IdcardController extends GetxController {
   void onInit() {
     super.onInit();
   }  void fetchRegister(BuildContext context) async {
-    var response = await studentApi.getRegister(
+    var response = await studentApi.getIdcard(
         levelController.text,
         avatarController.text,
         studentIdController.text);

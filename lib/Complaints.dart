@@ -45,9 +45,19 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
       appBar: AppBar(
         backgroundColor: mainColor,
         title: Text('Complaints Page', style: TextStyle(
-        color: Colors.white,),
+        color: Colors.white,
         ),
-      ),
+        ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ServicesScreen()),
+              );
+            },
+          ),
+        ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20.0),
         child: Column(

@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:project/First%20page.dart';
+import 'package:project/Services.dart';
 import 'package:project/register/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -13,14 +15,15 @@ void main() {
 }
 
 class Register extends StatelessWidget {
+  Color mainColor = Color(0xFF5B8AB0);
+  Color backgroundColor = Color(0xFFF5F5F5);
+  Color textColor = Color(0xFF294964);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Registration Form',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        hintColor: Colors.deepOrangeAccent,
       ),
       home: RegistrationForm(),
     );
@@ -54,7 +57,17 @@ class _RegistrationFormState extends State<RegistrationForm> {
         builder: (controller) {
           return Scaffold(
             appBar: AppBar(
+              backgroundColor: mainColor,
               title: Text('Registration Form'),
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Firstpage()),
+                  );
+                },
+              ),
             ),
             body: SingleChildScrollView(
               padding: EdgeInsets.all(20.0),
@@ -201,6 +214,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                   controller.fetchRegister(context);
                                 }
                               },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: mainColor, // Set the background color of the button to black
+                              ),
                               child: Text('Register'),
                             ),
                           ),
