@@ -19,12 +19,11 @@ class CertificatesController extends GetxController {
   }
 
   void fetchRegister(BuildContext context) async {
-    var response = await studentApi.getRegister(
+    var response = await studentApi.getcertificatesScreen(
         usernameController.text,
         certificateTypeController.text,
-        imageUrlController.text,
-        // if (response != null) {
-        print(response.toString());
+        imageUrlController.text,);
+
         if (response["status"] == "success") {
       print("success" + "success");
       Certificate.value = CertificateModel.fromJson(response);

@@ -26,7 +26,7 @@ class LogInController extends GetxController {
         emailIogInController.text, passwordIogInController.text);
 
     if (responseLogIn != null) {
-      if (responseLogIn['status'] == true) {
+      if (responseLogIn['status'] == "success") {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) =>  ServicesScreen ()),
@@ -35,7 +35,7 @@ class LogInController extends GetxController {
       } else {
         Get.snackbar(
           "",
-          "رقم الهاتف او البريد الالكترونى غير صحيح".tr,
+          " البريد الالكترونى غير صحيح",
           colorText: Colors.white,
           backgroundColor: Colors.red,
         );

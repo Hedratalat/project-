@@ -45,7 +45,7 @@ class StudentApi {
 
     try {
       final response = await dio.post(
-        'register',
+        'users/register',
         data: userData,
       );
 
@@ -80,12 +80,42 @@ class StudentApi {
     };
 
     final response = await dio.post(
-      'login',
+      'users/login',
       data: LogInData,
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return response.data;
-    } else   {
+    } else if (response.statusCode == 400)  {
+      return  Get.snackbar(
+        "",
+        " البريد الالكترونى غير صحيح",
+        colorText: Colors.white,
+        backgroundColor: Colors.red,
+      );
+
+    }else {
+      return null;
+    }
+  }
+
+/////////////////////////////////////////  /////////////////////////////////////////
+  Future<dynamic> addSports(
+      String typeactivity,
+      String name,
+      ) async {
+    final Map<String, dynamic> LogInData = {
+      "typeactivity": typeactivity,
+      "name": name,
+
+    };
+
+    final response = await dio.post(
+      'sports/addsports',
+      data: LogInData,
+    );
+    if (response.statusCode == 201) {
+      return response.data;
+    }else {
       return null;
     }
   }
