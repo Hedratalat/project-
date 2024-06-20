@@ -22,7 +22,9 @@ class CertificatesController extends GetxController {
     var response = await studentApi.getcertificatesScreen(
         usernameController.text,
         certificateTypeController.text,
+
         imageUrlController.text);
+
 
         if (response["status"] == "success") {
       print("success" + "success");

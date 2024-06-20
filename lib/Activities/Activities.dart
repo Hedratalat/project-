@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+
+import 'Activities_controller.dart';
 
 class activitiesScreen extends StatefulWidget {
   @override
@@ -12,14 +15,17 @@ class _ActivitiesScreenState extends State<activitiesScreen> {
 
   List<String> activities = [
     'Sports Activity ',
-    'Activity 2',
-    'Activity 3',
+    'Cultural activity',
+    'Literary activity',
   ];
 
-  String? selectedActivity;
+
 
   @override
   Widget build(BuildContext context) {
+    return GetBuilder<activitiesController>(
+        init: activitiesController(),
+    builder: (controller) {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -46,6 +52,7 @@ class _ActivitiesScreenState extends State<activitiesScreen> {
               ),
               SizedBox(height: 55),
               TextFormField(
+                controller: controller.StudentNameController,
                 decoration: InputDecoration(
                   labelText: 'Student Name',
                   prefixIcon: Icon(Icons.person),
@@ -54,10 +61,11 @@ class _ActivitiesScreenState extends State<activitiesScreen> {
               ),
               SizedBox(height: 40),
               DropdownButtonFormField<String>(
-                value: selectedActivity,
+                value: controller.selectedActivity,
                 onChanged: (newValue) {
                   setState(() {
-                    selectedActivity = newValue;
+                   controller. selectedActivity = newValue;
+                   controller.update();
                   });
                 },
                 decoration: InputDecoration(
@@ -74,18 +82,19 @@ class _ActivitiesScreenState extends State<activitiesScreen> {
               SizedBox(height: 70),
               GestureDetector(
                 onTap: () {
-                  if (selectedActivity != null) {
+                  if (controller.selectedActivity != "") {
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
                           title: Text('Confirmation'),
-                          content: Text('You have selected: $selectedActivity'),
+                          content: Text('You have selected: ${controller.selectedActivity}'),
                           actions: <Widget>[
                             TextButton(
                               child: Text('OK'),
                               onPressed: () {
-                                Navigator.of(context).pop();
+                                controller.fetchactivities(context);
+
                               },
                             ),
                           ],
@@ -132,6 +141,6 @@ class _ActivitiesScreenState extends State<activitiesScreen> {
           ),
         ),
       ),
-    );
+    );});
   }
 }

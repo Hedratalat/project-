@@ -45,6 +45,7 @@ class _ScholarshipsScreenState extends State<scholarshipsScreen> {
               ),
               SizedBox(height: 40),
               TextFormField(
+                controller: nameController,
                 decoration: InputDecoration(
                   labelText: 'Student Name',
                   prefixIcon: Icon(Icons.person),
@@ -53,6 +54,7 @@ class _ScholarshipsScreenState extends State<scholarshipsScreen> {
               ),
               SizedBox(height: 30),
               TextFormField(
+                controller: scholarshipController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'GPA',

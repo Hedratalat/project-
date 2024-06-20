@@ -45,7 +45,7 @@ class StudentApi {
 
     try {
       final response = await dio.post(
-        'register',
+        'users/register',
         data: userData,
       );
 
@@ -80,12 +80,42 @@ class StudentApi {
     };
 
     final response = await dio.post(
-      'login',
+      'users/login',
       data: LogInData,
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return response.data;
-    } else   {
+    } else if (response.statusCode == 400)  {
+      return  Get.snackbar(
+        "",
+        " البريد الالكترونى غير صحيح",
+        colorText: Colors.white,
+        backgroundColor: Colors.red,
+      );
+
+    }else {
+      return null;
+    }
+  }
+
+/////////////////////////////////////////  /////////////////////////////////////////
+  Future<dynamic> addSports(
+      String typeactivity,
+      String name,
+      ) async {
+    final Map<String, dynamic> LogInData = {
+      "typeactivity": typeactivity,
+      "name": name,
+
+    };
+
+    final response = await dio.post(
+      'sports/addsports',
+      data: LogInData,
+    );
+    if (response.statusCode == 201) {
+      return response.data;
+    }else {
       return null;
     }
   }
@@ -215,5 +245,126 @@ class StudentApi {
     }
   }
 /////////////////////////////////////////
+  Future<dynamic> getComplaints(
+      String studentId,
+      String message,
 
+      ) async {
+    print("" + studentId + " " + studentId + " ".toString());
+
+    final Map<String, dynamic> ComplaintsData = {
+      "studentId": studentId,
+      "message": message,
+
+
+
+    };
+
+    try {
+      final response = await dio.post(
+        'Complaints',
+        data: ComplaintsData,
+      );
+
+      if (response.statusCode == 201) {
+        return response.data;
+      } else if (response.statusCode == 400) {
+        return   Get.snackbar(
+          "",
+          "Username already exists",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          // icon: const Icon(Icons.add_alert),
+        );
+
+      }else {
+        return null;
+      }
+    } catch (e) {
+      print("Error: $e");
+      return null;
+    }
+  }
+
+/////////////////////////////////////////
+  Future<dynamic> getScholarships(
+      String name,
+      String scholarship,
+
+      ) async {
+    print("" + name + " " + scholarship + " ".toString());
+
+    final Map<String, dynamic> ScholarshipData = {
+      "name": name,
+      "scholarship": scholarship,
+
+
+    };
+
+    try {
+      final response = await dio.post(
+        'Scholarships',
+        data: ScholarshipData,
+      );
+
+      if (response.statusCode == 201) {
+        return response.data;
+      } else if (response.statusCode == 400) {
+        return   Get.snackbar(
+          "",
+          "Username already exists",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          // icon: const Icon(Icons.add_alert),
+        );
+
+      }else {
+        return null;
+      }
+    } catch (e) {
+      print("Error: $e");
+      return null;
+    }
+  }
+/////////////////////////////////////////
+  Future<dynamic> getSCourseRegistration(
+      String name,
+      String grade,
+
+      ) async {
+    print("" + name + " " + grade + " ".toString());
+
+    final Map<String, dynamic> CourseRegistrationData = {
+      "name": name,
+      "grade": grade,
+
+
+    };
+
+    try {
+      final response = await dio.post(
+        'CourseRegistration',
+        data: CourseRegistrationData,
+      );
+
+      if (response.statusCode == 201) {
+        return response.data;
+      } else if (response.statusCode == 400) {
+        return   Get.snackbar(
+          "",
+          "Username already exists",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          // icon: const Icon(Icons.add_alert),
+        );
+
+      }else {
+        return null;
+      }
+    } catch (e) {
+      print("Error: $e");
+      return null;
+    }
+  }
+/////////////////////////////////////////
 }

@@ -5,14 +5,15 @@ import '../../apis/student_api.dart';
 import '../Services.dart';
 
 
-class activitiesController extends GetxController {
+class CourseRegistrationController extends GetxController {
   StudentApi studentApi = StudentApi();
 
   // var logInSuccess = LogInSuccessModel().obs;
 
 
-  TextEditingController StudentNameController = TextEditingController();
-  String? selectedActivity;
+  TextEditingController nameController = TextEditingController();
+  TextEditingController gradeController = TextEditingController();
+
 
   @override
   void onInit() {
@@ -22,9 +23,9 @@ class activitiesController extends GetxController {
 
 
   void fetchactivities(BuildContext context) async {
-    print("objectggg"+selectedActivity.toString()+ " "+ StudentNameController.text);
+    print("objectggg"+gradeController.toString()+ " "+ nameController.text);
     var responseLogIn = await studentApi.addSports(
-        selectedActivity.toString(), StudentNameController.text);
+        gradeController.toString(), nameController.text);
 
     if (responseLogIn != null) {
       if (responseLogIn['status'] == "success") {

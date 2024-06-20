@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'Services.dart';
+import '../Services.dart';
 
 
 class CourseRegistration extends StatelessWidget {
@@ -71,6 +71,7 @@ class _MaterialRegistrationPageState extends State<MaterialRegistrationPage> {
               SizedBox(height: 20),
 
               TextField(
+                controller: nameController,
                 decoration: InputDecoration(
                   labelText: 'Name',
                   border: OutlineInputBorder(),
@@ -84,6 +85,7 @@ class _MaterialRegistrationPageState extends State<MaterialRegistrationPage> {
               ),
               SizedBox(height: 40.0),
               DropdownButtonFormField<String>(
+                value: gradeController,
                 decoration: InputDecoration(
                   labelText: 'Grade',
                   border: OutlineInputBorder(),

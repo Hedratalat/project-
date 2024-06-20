@@ -92,6 +92,15 @@ class _ProfilePageState extends State<ProfilePage> {
             color: Colors.white,
           ),
         ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ServicesScreen()),
+            );
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

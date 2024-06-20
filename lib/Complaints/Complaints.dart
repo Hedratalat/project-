@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Services.dart';
+import '../Services.dart';
 
 
 //void main() { runApp(Complaints());}
@@ -93,6 +93,7 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
                   ),
                   SizedBox(height: 20.0),
                   TextField(
+                    controller: studentIdController,
                     controller: idController,
                     decoration: InputDecoration(
                       labelText: 'Your ID',
@@ -120,7 +121,7 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
               child: DropdownButtonFormField<String>(
                 value: selectedComplaintType,
                 hint: Text('Select Complaint Type'),
-                items: ['Type 1', 'Type 2', 'Type 3']
+                items: ['Course Content and Teaching Methods', 'Lack of Practical Applications', ' Outdated Course Materials']
                     .map((type) => DropdownMenuItem(
                   child: Text(type),
                   value: type,
@@ -155,6 +156,7 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
               child: Column(
                 children: [
                   TextField(
+                    controller: messageController,
                     controller: complaintController,
                     maxLines: 5,
                     decoration: InputDecoration(

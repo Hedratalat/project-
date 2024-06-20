@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'Activities/Activities.dart';
 import 'Certificate/Certificates.dart';
 import 'Idcard/Change photo card.dart';
-import 'Complaints.dart';
-import 'Course Registration.dart';
-import 'Scholarships.dart';
+import 'Complaints/Complaints.dart';
+import 'CourseRegistration/Course Registration.dart';
+import 'Scholarships/Scholarships.dart';
 
 //import 'package:popup_menu/popup_menu.dart';
 
