@@ -44,24 +44,24 @@ class _ScholarshipsScreenState extends State<scholarshipsScreen> {
                 child: Image.asset('images/ScholarshipsScreen2.png'),
               ),
               SizedBox(height: 40),
-              TextFormField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  labelText: 'Student Name',
-                  prefixIcon: Icon(Icons.person),
-                  border: OutlineInputBorder(),
-                ),
-              ),
+              // TextFormField(
+              //   controller: nameController,
+              //   decoration: InputDecoration(
+              //     labelText: 'Student Name',
+              //     prefixIcon: Icon(Icons.person),
+              //     border: OutlineInputBorder(),
+              //   ),
+              // ),
               SizedBox(height: 30),
-              TextFormField(
-                controller: scholarshipController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: 'GPA',
-                  prefixIcon: Icon(Icons.label_important_outlined),
-                  border: OutlineInputBorder(),
-                ),
-              ),
+              // TextFormField(
+              //   controller: scholarshipController,
+              //   keyboardType: TextInputType.number,
+              //   decoration: InputDecoration(
+              //     labelText: 'GPA',
+              //     prefixIcon: Icon(Icons.label_important_outlined),
+              //     border: OutlineInputBorder(),
+              //   ),
+              // ),
               SizedBox(height: 30),
               DropdownButtonFormField<String>(
                 value: selectedScholarship,

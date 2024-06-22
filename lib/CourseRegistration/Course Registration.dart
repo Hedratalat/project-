@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import '../Services.dart';
+import 'CourseRegistration_Controller.dart';
 
 
 class CourseRegistration extends StatelessWidget {
@@ -51,6 +53,9 @@ class _MaterialRegistrationPageState extends State<MaterialRegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
+    return GetBuilder<CourseRegistrationController>(
+        init: CourseRegistrationController(),
+    builder: (controller) {
     return Scaffold(
       appBar: AppBar(
         leading: Icon(
@@ -71,7 +76,7 @@ class _MaterialRegistrationPageState extends State<MaterialRegistrationPage> {
               SizedBox(height: 20),
 
               TextField(
-                controller: nameController,
+                controller: controller.nameController,
                 decoration: InputDecoration(
                   labelText: 'Name',
                   border: OutlineInputBorder(),
@@ -85,7 +90,7 @@ class _MaterialRegistrationPageState extends State<MaterialRegistrationPage> {
               ),
               SizedBox(height: 40.0),
               DropdownButtonFormField<String>(
-                value: gradeController,
+                value:_selectedGrade,
                 decoration: InputDecoration(
                   labelText: 'Grade',
                   border: OutlineInputBorder(),
@@ -140,7 +145,7 @@ class _MaterialRegistrationPageState extends State<MaterialRegistrationPage> {
           ),
         ),
 
-    );
+    );});
   }
 }
 

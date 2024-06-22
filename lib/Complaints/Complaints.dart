@@ -92,14 +92,14 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
                     ),
                   ),
                   SizedBox(height: 20.0),
-                  TextField(
-                    controller: studentIdController,
-                    controller: idController,
-                    decoration: InputDecoration(
-                      labelText: 'Your ID',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
+                  // TextField(
+                  //   controller: studentIdController,
+                  //   controller: idController,
+                  //   decoration: InputDecoration(
+                  //     labelText: 'Your ID',
+                  //     border: OutlineInputBorder(),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -155,15 +155,15 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
               ),
               child: Column(
                 children: [
-                  TextField(
-                    controller: messageController,
-                    controller: complaintController,
-                    maxLines: 5,
-                    decoration: InputDecoration(
-                      labelText: 'Complaint (You can add an image or file)',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
+                  // TextField(
+                  //   controller: messageController,
+                  //   controller: complaintController,
+                  //   maxLines: 5,
+                  //   decoration: InputDecoration(
+                  //     labelText: 'Complaint (You can add an image or file)',
+                  //     border: OutlineInputBorder(),
+                  //   ),
+                  // ),
                   SizedBox(height: 20.0),
                   IconButton(
                     icon: Icon(Icons.attach_file),

@@ -98,7 +98,7 @@ class StudentApi {
     }
   }
 
-/////////////////////////////////////////  /////////////////////////////////////////
+ /////////////////////////////////////////
   Future<dynamic> addSports(
       String typeactivity,
       String name,
@@ -124,20 +124,20 @@ class StudentApi {
 
   Future<dynamic> getcertificatesScreen(String name,
       String certificateType,
-      String imageUrl,) async {
-    print("" + name + " " + certificateType + " " + imageUrl + " ".toString());
+     ) async {
+    print("" + name + " " + certificateType + " " );
 
     final Map<String, dynamic> certificatesScreenData = {
       "name": name,
       "certificateType": certificateType,
-      "imageUrl": imageUrl,
+
 
 
     };
 
     try {
       final response = await dio.post(
-        'certificates',
+        'certificates/getcertificate',
         data: certificatesScreenData,
       );
 
