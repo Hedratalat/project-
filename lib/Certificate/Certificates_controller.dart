@@ -11,19 +11,18 @@ class CertificatesController extends GetxController {
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController certificateTypeController = TextEditingController();
-  TextEditingController imageUrlController = TextEditingController();
+
 
   @override
   void onInit() {
     super.onInit();
   }
 
-  void fetchRegister(BuildContext context) async {
+  void fetchcertificates(BuildContext context) async {
     var response = await studentApi.getcertificatesScreen(
         usernameController.text,
         certificateTypeController.text,
-
-        imageUrlController.text);
+    );
 
 
         if (response["status"] == "success") {

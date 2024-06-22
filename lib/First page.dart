@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:project/register/Register.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Services.dart';
 import 'log_in/LoginScreen.dart';
 
 
-class Firstpage extends StatelessWidget {
+class FirstPage  extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Home Page',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(),
-    );
-  }
+  State<FirstPage> createState() => _FirstPageState();
 }
 
-class HomePage extends StatelessWidget {
+class _FirstPageState extends State<FirstPage> {
+  @override
+  void initState() {
+
+    _loadData();
+
+    super.initState();
+  }
+
+  // Load data from SharedPreferences
+  _loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if(  prefs.getString("token")!=null){
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>  ServicesScreen ()),
+      );
+    }
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

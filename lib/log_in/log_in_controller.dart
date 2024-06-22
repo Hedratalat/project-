@@ -1,14 +1,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../apis/student_api.dart';
 import '../Services.dart';
+import 'LogInSuccessModel.dart';
 
 
 class LogInController extends GetxController {
   StudentApi studentApi = StudentApi();
 
-  // var logInSuccess = LogInSuccessModel().obs;
+ var logInSuccess = loginModel().obs;
 
 
   TextEditingController emailIogInController = TextEditingController();
@@ -27,6 +29,10 @@ class LogInController extends GetxController {
 
     if (responseLogIn != null) {
       if (responseLogIn['status'] == "success") {
+        logInSuccess.value=  loginModel.fromJson(responseLogIn);
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await  prefs.setString("token", logInSuccess.value.data!.token!);
+
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) =>  ServicesScreen ()),

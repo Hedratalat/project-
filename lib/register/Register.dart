@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:project/First%20page.dart';
+
 import 'package:project/Services.dart';
 import 'package:project/register/register_controller.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../First page.dart';
 import 'register_controller.dart';
 
 void main() {
@@ -64,7 +65,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Firstpage()),
+                    MaterialPageRoute(builder: (context) => FirstPage()),
                   );
                 },
               ),
