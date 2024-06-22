@@ -68,8 +68,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       print(value);
                     },
                     decoration: InputDecoration(
-                      labelText: 'User Id',
-                      prefixIcon: Icon(Icons.person),
+                      labelText: 'Email',
+                      prefixIcon: Icon(Icons.email),
                       border: OutlineInputBorder(),
                     ),
                   ),
