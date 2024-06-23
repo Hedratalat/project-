@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import '../Services.dart';
+import 'Idcard_Controller.dart';
 
 class Idcard extends StatelessWidget {
   final TextEditingController levelController = TextEditingController();
@@ -27,61 +29,17 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  File? _image;
-  final picker = ImagePicker();
 
-  Future<void> _pickImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
-    }
-  }
 
-  void _confirm() {
-    if (widget.levelController.text.isNotEmpty && _image != null) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Success"),
-            content: Text("Your profile picture has been changed successfully."),
-            actions: <Widget>[
-              TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Error"),
-            content: Text("Please enter your name and select a picture."),
-            actions: <Widget>[
-              TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
+
+  
 
   @override
   Widget build(BuildContext context) {
+    return GetBuilder<IdcardController>(
+        init: IdcardController(),
+    builder: (controller) {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -114,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               TextField(
-                controller: widget.levelController,
+                controller: controller.nameController,
                 decoration: InputDecoration(
                   labelText: 'Student Name',
                   prefixIcon: Icon(Icons.person),
@@ -122,12 +80,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               SizedBox(height: 20),
-              _image == null
+              controller.image == null
                   ? Text('No image selected.')
-                  : Image.file(_image!),
+                  : Image.file(controller.image!),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _pickImage,
+                onPressed:(){ controller.pickImage();},
                 child: Text('Upload New Picture'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: mainColor,
@@ -136,7 +94,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _confirm,
+                onPressed:(){ controller.confirm(context);},
                 child: Text('Confirm'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: mainColor,
@@ -147,6 +105,6 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
       ),
-    );
+    );});
   }
 }
