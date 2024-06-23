@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'Activities/Activities.dart';
 import 'Certificate/Certificates.dart';
 import 'Idcard/Change photo card.dart';
@@ -43,17 +42,34 @@ class _ServicesScreenState extends State<ServicesScreen> {
                 position: RelativeRect.fromLTRB(100, 80, 0, 0),
                 items: [
                   PopupMenuItem(
-                    child: Text('Notification 1'),
+                    child: Text(' Dear Students..Quiz(3) will cover RNN LSTMand Stacked LSTM sections.     '),
                     value: 1,
                   ),
                   PopupMenuItem(
-                    child: Text('Notification 2'),
+                    child: Text('   '),
                     value: 2,
                   ),
                   PopupMenuItem(
-                    child: Text('Notification 3'),
+                    child: Text('Dear Students..  For sections 6&11 IIS additional Section will be Tomorrow at 10:00 AM.   '),
                     value: 3,
                   ),
+                  PopupMenuItem(
+                    child: Text('   '),
+                    value: 3,
+                  ),
+                  PopupMenuItem(
+                    child: Text('Dear All. I hope you are fine.  Quiz 1 for the web (3) course will be online and will be available for you during office hours on [Saturday 29/6/2024'),
+                    value: 4,
+                  ),
+                  PopupMenuItem(
+                    child: Text('   '),
+                    value: 4,
+                  ),
+                  PopupMenuItem(
+                    child: Text('Dear All.   Quiz 1 for the web (3) course will be online and will be available for you during office hours on [Saturday 29/6/2024] '),
+                    value: 5,
+                  ),
+
                 ],
               ).then((value) {
                 if (value != null) {
@@ -67,7 +83,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-           
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(

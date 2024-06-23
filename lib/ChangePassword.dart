@@ -109,24 +109,65 @@ class _ChangePasswordState extends State<ChangePassword> {
                     ),
                   ),
                 ),
+
                 Container(
                   margin: EdgeInsets.only(bottom: 30.0),
                   width: double.infinity,
                   color: mainColor,
-                  child: MaterialButton(onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) =>  ServicesScreen ()), );
-                    print(emailController.text);
-                    print(usernameController.text);
-                    print(password.text);
-                    print(confirmpassword.text);
-                  },
-                    child: Text('Sign Up',
+                  child: MaterialButton(
+                    onPressed: () {
+                      if (emailController.text.isNotEmpty &&
+                          usernameController.text.isNotEmpty &&
+                          password.text.isNotEmpty &&
+                          confirmpassword.text.isNotEmpty) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ServicesScreen()),
+                        );
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Success"),
+                              content: Text("Password changed successfully"),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text("OK"),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Error"),
+                              content: Text("Please fill in all fields"),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text("OK"),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
+                    },
+                    child: Text(
+                      'Sign Up',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,
-                      ),),
+                      ),
+                    ),
                   ),
                 ),
               ],),

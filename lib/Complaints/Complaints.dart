@@ -91,6 +91,17 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
                       border: OutlineInputBorder(),
                     ),
                   ),
+                  SizedBox(height: 20),
+                  TextField(
+                    controller:  complaintController,
+                    decoration: InputDecoration(
+                      labelText: 'Your Complaints',
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                      border: OutlineInputBorder(),
+                    ),
+                    maxLines: 10, // Allows the text field to expand vertically
+                  ),
+
                   SizedBox(height: 20.0),
                   // TextField(
                   //   controller: studentIdController,
@@ -103,91 +114,91 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.only(bottom: 20.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: DropdownButtonFormField<String>(
-                value: selectedComplaintType,
-                hint: Text('Select Complaint Type'),
-                items: ['Course Content and Teaching Methods', 'Lack of Practical Applications', ' Outdated Course Materials']
-                    .map((type) => DropdownMenuItem(
-                  child: Text(type),
-                  value: type,
-                ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedComplaintType = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  labelText: 'Complaint Type',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.only(bottom: 20.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  // TextField(
-                  //   controller: messageController,
-                  //   controller: complaintController,
-                  //   maxLines: 5,
-                  //   decoration: InputDecoration(
-                  //     labelText: 'Complaint (You can add an image or file)',
-                  //     border: OutlineInputBorder(),
-                  //   ),
-                  // ),
-                  SizedBox(height: 20.0),
-                  IconButton(
-                    icon: Icon(Icons.attach_file),
-                    onPressed: () {
-                      setState(() {
-                        showImageUpload = !showImageUpload;
-                      });
-                    },
-                  ),
-                  if (showImageUpload)
-                    Container(
-                      width: double.infinity,
-                      height: 200.0,
-                      color: Colors.grey[200],
-                      child: Center(
-                        child: Text(
-                          'Image or File Attachment Area',
-                          style: TextStyle(color: Colors.black54),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ),
+            // Container(
+            //   padding: EdgeInsets.all(10.0),
+            //   margin: EdgeInsets.only(bottom: 20.0),
+            //   decoration: BoxDecoration(
+            //     color: Colors.white,
+            //     borderRadius: BorderRadius.circular(10.0),
+            //     boxShadow: [
+            //       BoxShadow(
+            //         color: Colors.grey.withOpacity(0.5),
+            //         spreadRadius: 2,
+            //         blurRadius: 5,
+            //         offset: Offset(0, 3),
+            //       ),
+            //     ],
+            //   ),
+            //   child: DropdownButtonFormField<String>(
+            //     value: selectedComplaintType,
+            //     hint: Text('Select Complaint Type'),
+            //     items: ['Course Content and Teaching Methods', 'Lack of Practical Applications', ' Outdated Course Materials']
+            //         .map((type) => DropdownMenuItem(
+            //       child: Text(type),
+            //       value: type,
+            //     ))
+            //         .toList(),
+            //     onChanged: (value) {
+            //       setState(() {
+            //         selectedComplaintType = value;
+            //       });
+            //     },
+            //     decoration: InputDecoration(
+            //       labelText: 'Complaint Type',
+            //       border: OutlineInputBorder(),
+            //     ),
+            //   ),
+            // ),
+            // Container(
+            //   padding: EdgeInsets.all(10.0),
+            //   margin: EdgeInsets.only(bottom: 20.0),
+            //   decoration: BoxDecoration(
+            //     color: Colors.white,
+            //     borderRadius: BorderRadius.circular(10.0),
+            //     boxShadow: [
+            //       BoxShadow(
+            //         color: Colors.grey.withOpacity(0.5),
+            //         spreadRadius: 2,
+            //         blurRadius: 5,
+            //         offset: Offset(0, 3),
+            //       ),
+            //     ],
+            //   ),
+            //   child: Column(
+            //     children: [
+            //       // TextField(
+            //       //   controller: messageController,
+            //       //   controller: complaintController,
+            //       //   maxLines: 5,
+            //       //   decoration: InputDecoration(
+            //       //     labelText: 'Complaint (You can add an image or file)',
+            //       //     border: OutlineInputBorder(),
+            //       //   ),
+            //       // ),
+            //       SizedBox(height: 20.0),
+            //       IconButton(
+            //         icon: Icon(Icons.attach_file),
+            //         onPressed: () {
+            //           setState(() {
+            //             showImageUpload = !showImageUpload;
+            //           });
+            //         },
+            //       ),
+            //       if (showImageUpload)
+            //         Container(
+            //           width: double.infinity,
+            //           height: 200.0,
+            //           color: Colors.grey[200],
+            //           child: Center(
+            //             child: Text(
+            //               'Image or File Attachment Area',
+            //               style: TextStyle(color: Colors.black54),
+            //             ),
+            //           ),
+            //         ),
+            //     ],
+            //   ),
+            // ),
             ElevatedButton(
               onPressed: () {
                 setState(() {

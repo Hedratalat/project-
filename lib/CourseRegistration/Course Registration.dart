@@ -58,19 +58,25 @@ class _MaterialRegistrationPageState extends State<MaterialRegistrationPage> {
     builder: (controller) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back, color: Colors.white,),
-        backgroundColor: mainColor, iconTheme: IconThemeData(
-        color: Colors.white,),
+        backgroundColor: mainColor,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ServicesScreen()),
+            );
+          },
+        ),
         title: Text('Course Registration', style: TextStyle(
           color: Colors.white,),
         ),
       ),
       body: Padding(
-          padding: EdgeInsets.all(30.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Image.asset('images/Course Registration2.png',width: 250,),
+              Image.asset('images/Course Registration2.png',width: 200,),
               // Change the path to your image
 
               SizedBox(height: 20),
@@ -88,7 +94,7 @@ class _MaterialRegistrationPageState extends State<MaterialRegistrationPage> {
                   });
                 },
               ),
-              SizedBox(height: 40.0),
+              SizedBox(height: 17.0),
               DropdownButtonFormField<String>(
                 value:_selectedGrade,
                 decoration: InputDecoration(
@@ -108,7 +114,7 @@ class _MaterialRegistrationPageState extends State<MaterialRegistrationPage> {
                   });
                 },
               ),
-              SizedBox(height: 60.0),
+              SizedBox(height: 20.0),
               _selectedGrade != null
                   ? Expanded(
                 child: ListView(
