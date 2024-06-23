@@ -250,7 +250,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 //     }),
 //   );
 //
-//   if (response.statusCode == 201) {
+//   if (response.statusCode == 200) {
 //     final snackBar = SnackBar(content: Text('Registration successful!'));
 //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
 //   } else {

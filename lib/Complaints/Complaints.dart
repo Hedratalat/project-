@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 import '../Services.dart';
+import 'Complaints_controller.dart';
 
 
 //void main() { runApp(Complaints());}
@@ -41,6 +45,9 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
 
   @override
   Widget build(BuildContext context) {
+    return GetBuilder<ComplaintsController>(
+        init: ComplaintsController(),
+    builder: (controller) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mainColor,
@@ -93,7 +100,7 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
                   ),
                   SizedBox(height: 20),
                   TextField(
-                    controller:  complaintController,
+                    controller: controller.messageController,
                     decoration: InputDecoration(
                       labelText: 'Your Complaints',
                         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -201,9 +208,8 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
             // ),
             ElevatedButton(
               onPressed: () {
-                setState(() {
-                  complaintSent = true;
-                });
+                controller.fetchComplaint(context);
+
               },
 
               child: Text('Send Complaint'),
@@ -239,6 +245,6 @@ class _ComplaintsPageState extends State<ComplaintsPage> {
           ],
         ),
       ),
-    );
+    );});
   }
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
+
+import 'Scholarships_controller.dart';
 
 class scholarshipsScreen extends StatefulWidget {
   @override
@@ -17,10 +20,13 @@ class _ScholarshipsScreenState extends State<scholarshipsScreen> {
     'Artistic Innovation Scholarship',
   ];
 
-  String? selectedScholarship;
+
 
   @override
   Widget build(BuildContext context) {
+    return GetBuilder<ScholarshipsController>(
+        init: ScholarshipsController(),
+    builder: (controller) {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -44,30 +50,31 @@ class _ScholarshipsScreenState extends State<scholarshipsScreen> {
                 child: Image.asset('images/ScholarshipsScreen2.png'),
               ),
               SizedBox(height: 40),
-              // TextFormField(
-              //   controller: nameController,
-              //   decoration: InputDecoration(
-              //     labelText: 'Student Name',
-              //     prefixIcon: Icon(Icons.person),
-              //     border: OutlineInputBorder(),
-              //   ),
-              // ),
+              TextFormField(
+                controller: controller.nameController,
+                decoration: InputDecoration(
+                  labelText: 'Student Name',
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(),
+                ),
+              ),
               SizedBox(height: 30),
-              // TextFormField(
-              //   controller: scholarshipController,
-              //   keyboardType: TextInputType.number,
-              //   decoration: InputDecoration(
-              //     labelText: 'GPA',
-              //     prefixIcon: Icon(Icons.label_important_outlined),
-              //     border: OutlineInputBorder(),
-              //   ),
-              // ),
+              TextFormField(
+                controller: controller.GpaController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'GPA',
+                  prefixIcon: Icon(Icons.label_important_outlined),
+                  border: OutlineInputBorder(),
+                ),
+              ),
               SizedBox(height: 30),
               DropdownButtonFormField<String>(
-                value: selectedScholarship,
+                value: controller.selectedScholarship,
                 onChanged: (newValue) {
                   setState(() {
-                    selectedScholarship = newValue;
+                    controller.selectedScholarship = newValue;
+                    controller.update();
                   });
                 },
                 decoration: InputDecoration(
@@ -93,7 +100,8 @@ class _ScholarshipsScreenState extends State<scholarshipsScreen> {
                           TextButton(
                             child: Text('OK'),
                             onPressed: () {
-                              Navigator.of(context).pop();
+                              controller.fetchScholarships(context);
+                             // Navigator.of(context).pop();
                             },
                           ),
                         ],
@@ -121,6 +129,6 @@ class _ScholarshipsScreenState extends State<scholarshipsScreen> {
           ),
         ),
       ),
-    );
+    );});
   }
 }

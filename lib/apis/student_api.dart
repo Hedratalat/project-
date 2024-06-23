@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 import '../constants.dart';
@@ -49,16 +50,8 @@ class StudentApi {
         data: userData,
       );
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         return response.data;
-      } else if (response.statusCode == 400) {
-        return Get.snackbar(
-          "",
-          "Username already exists",
-          colorText: Colors.white,
-          backgroundColor: Colors.red,
-          // icon: const Icon(Icons.add_alert),
-        );
       } else {
         return null;
       }
@@ -83,17 +76,9 @@ class StudentApi {
       'users/login',
       data: LogInData,
     );
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       return response.data;
-    } else if (response.statusCode == 400)  {
-      return  Get.snackbar(
-        "",
-        " البريد الالكترونى غير صحيح",
-        colorText: Colors.white,
-        backgroundColor: Colors.red,
-      );
-
-    }else {
+    } else {
       return null;
     }
   }
@@ -103,7 +88,7 @@ class StudentApi {
       String typeactivity,
       String name,
       ) async {
-    final Map<String, dynamic> LogInData = {
+    final Map<String, dynamic> SportsData = {
       "typeactivity": typeactivity,
       "name": name,
 
@@ -111,9 +96,9 @@ class StudentApi {
 
     final response = await dio.post(
       'sports/addsports',
-      data: LogInData,
+      data: SportsData,
     );
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       return response.data;
     }else {
       return null;
@@ -130,29 +115,16 @@ class StudentApi {
     final Map<String, dynamic> certificatesScreenData = {
       "name": name,
       "certificateType": certificateType,
-
-
-
     };
-
     try {
       final response = await dio.post(
         'certificates/getcertificate',
         data: certificatesScreenData,
       );
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         return response.data;
-      } else if (response.statusCode == 400) {
-        return   Get.snackbar(
-          "",
-          "Username already exists",
-          colorText: Colors.white,
-          backgroundColor: Colors.red,
-          // icon: const Icon(Icons.add_alert),
-        );
-
-      }else {
+      } else {
         return null;
       }
     } catch (e) {
@@ -161,7 +133,7 @@ class StudentApi {
     }
   }
 
-/////////////////////////////////////////
+////////////////////////////////////////
 
   Future<dynamic> getIdcard(
       String level,
@@ -184,7 +156,7 @@ class StudentApi {
         data: IdcardData,
       );
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         return response.data;
       } else if (response.statusCode == 400) {
         return   Get.snackbar(
@@ -204,56 +176,15 @@ class StudentApi {
     }
   }
 /////////////////////////////////////////
-  Future<dynamic> getActivities(
-      String name,
-      String typeactivity,
 
-      ) async {
-    print("" + name + " " + typeactivity + " ".toString());
-
-    final Map<String, dynamic> ActivitiesData = {
-      "name": name,
-      "typeactivity": typeactivity,
-
-
-
-    };
-
-    try {
-      final response = await dio.post(
-        'Activities',
-        data: ActivitiesData,
-      );
-
-      if (response.statusCode == 201) {
-        return response.data;
-      } else if (response.statusCode == 400) {
-        return   Get.snackbar(
-          "",
-          "Username already exists",
-          colorText: Colors.white,
-          backgroundColor: Colors.red,
-          // icon: const Icon(Icons.add_alert),
-        );
-
-      }else {
-        return null;
-      }
-    } catch (e) {
-      print("Error: $e");
-      return null;
-    }
-  }
-/////////////////////////////////////////
   Future<dynamic> getComplaints(
-      String studentId,
+
       String message,
 
       ) async {
-    print("" + studentId + " " + studentId + " ".toString());
-
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     final Map<String, dynamic> ComplaintsData = {
-      "studentId": studentId,
+      "id": prefs.getString("studentId"),
       "message": message,
 
 
@@ -262,22 +193,13 @@ class StudentApi {
 
     try {
       final response = await dio.post(
-        'Complaints',
+        'complaints/addcomplaint',
         data: ComplaintsData,
       );
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         return response.data;
-      } else if (response.statusCode == 400) {
-        return   Get.snackbar(
-          "",
-          "Username already exists",
-          colorText: Colors.white,
-          backgroundColor: Colors.red,
-          // icon: const Icon(Icons.add_alert),
-        );
-
-      }else {
+      } else{
         return null;
       }
     } catch (e) {
@@ -292,33 +214,27 @@ class StudentApi {
       String scholarship,
 
       ) async {
-    print("" + name + " " + scholarship + " ".toString());
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    print("" + name + " " + scholarship + " "+prefs.getString("studentId").toString());
 
     final Map<String, dynamic> ScholarshipData = {
       "name": name,
       "scholarship": scholarship,
+      "id":prefs.getString("studentId")
 
 
     };
 
     try {
       final response = await dio.post(
-        'Scholarships',
+        'grants/addgrants',
         data: ScholarshipData,
       );
 
       if (response.statusCode == 201) {
         return response.data;
-      } else if (response.statusCode == 400) {
-        return   Get.snackbar(
-          "",
-          "Username already exists",
-          colorText: Colors.white,
-          backgroundColor: Colors.red,
-          // icon: const Icon(Icons.add_alert),
-        );
-
-      }else {
+      } else  {
         return null;
       }
     } catch (e) {
@@ -347,18 +263,9 @@ class StudentApi {
         data: CourseRegistrationData,
       );
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         return response.data;
-      } else if (response.statusCode == 400) {
-        return   Get.snackbar(
-          "",
-          "Username already exists",
-          colorText: Colors.white,
-          backgroundColor: Colors.red,
-          // icon: const Icon(Icons.add_alert),
-        );
-
-      }else {
+      } else  {
         return null;
       }
     } catch (e) {

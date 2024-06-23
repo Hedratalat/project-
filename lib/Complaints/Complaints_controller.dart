@@ -8,10 +8,7 @@ import '../Services.dart';
 class ComplaintsController extends GetxController {
   StudentApi studentApi = StudentApi();
 
-  // var logInSuccess = LogInSuccessModel().obs;
 
-
-  TextEditingController studentIdController = TextEditingController();
   TextEditingController messageController = TextEditingController();
 
 
@@ -22,18 +19,37 @@ class ComplaintsController extends GetxController {
   }
 
 
-  void fetchactivities(BuildContext context) async {
-    print("objectggg"+messageController.toString()+ " "+ studentIdController.text);
-    var responseLogIn = await studentApi.addSports(
-        messageController.toString(), studentIdController.text);
+  void fetchComplaint(BuildContext context) async {
+    print("objectggg"+messageController.text.toString()+ " ");
+    var response = await studentApi.getComplaints(
+        messageController.text.toString());
 
-    if (responseLogIn != null) {
-      if (responseLogIn['status'] == "success") {
-        Navigator.of(context).pop();
+    if (response != null) {
+      if (response['status'] == "success") {
+        SnackBar(
+          content: Text('This is a Snackbar!'),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              // Code to execute when the action is pressed.
+            },
+          ),
+        );
+        // // Navigator.of(context).pop();
+        // Get.snackbar(
+        //   "",
+        //   "success",
+        //   colorText: Colors.white,
+        //   backgroundColor: Colors.green,
+        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  ServicesScreen ()),
+        );
       } else {
         Get.snackbar(
           "",
-          " البريد الالكترونى غير صحيح",
+          " try  anther ",
           colorText: Colors.white,
           backgroundColor: Colors.red,
         );

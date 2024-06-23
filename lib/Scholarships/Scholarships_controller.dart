@@ -8,11 +8,9 @@ import '../Services.dart';
 class ScholarshipsController extends GetxController {
   StudentApi studentApi = StudentApi();
 
-  // var logInSuccess = LogInSuccessModel().obs;
-
-
   TextEditingController nameController = TextEditingController();
-  TextEditingController scholarshipController = TextEditingController();
+  TextEditingController GpaController = TextEditingController();
+  String? selectedScholarship;
 
 
   @override
@@ -22,13 +20,14 @@ class ScholarshipsController extends GetxController {
   }
 
 
-  void fetchactivities(BuildContext context) async {
-    print("objectggg"+scholarshipController.toString()+ " "+ nameController.text);
-    var responseLogIn = await studentApi.addSports(
-        scholarshipController.toString(), nameController.text);
+  void fetchScholarships(BuildContext context) async {
+    print("objectggg"+ " "+ nameController.text);
+    var response = await studentApi.getScholarships(
+        nameController.text, selectedScholarship.toString());
 
-    if (responseLogIn != null) {
-      if (responseLogIn['status'] == "success") {
+    print(response);
+      if (response['status'] == "success") {
+        Navigator.of(context).pop();
         Navigator.of(context).pop();
       } else {
         Get.snackbar(
@@ -40,6 +39,6 @@ class ScholarshipsController extends GetxController {
       }
 
       update();
-    }
+
   }
 }
