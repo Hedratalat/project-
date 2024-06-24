@@ -121,7 +121,7 @@ class StudentApi {
     };
     try {
       final response = await dio.post(
-        'certificates/getcertificate',
+        'certificates/addcertificate',
         data: certificatesScreenData,
       );
 
@@ -137,20 +137,18 @@ class StudentApi {
   }
 
 ////////////////////////////////////////
-  //////////////////////////
-  Future<dynamic> getIdcard(var filesource,var name) async {
 
-    print("objectttt"+filesource.toString());
+  Future<dynamic> getIdcard(var filesource,var name) async {
     late var bytes;
     if(filesource is String){
       final response = await http.get(Uri.parse(filesource));
       if (response.statusCode == 200) {
-        // Convert the response body into bytes
         bytes = response.bodyBytes;}}
     else{
       bytes = await filesource.readAsBytes();
     }
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    print("objectttt"+filesource.toString()+prefs.getString("studentId").toString());
     FormData formData = FormData.fromMap({
       "avatar": await MultipartFile.fromBytes(
         bytes,
@@ -171,48 +169,8 @@ class StudentApi {
       return null;
     }
   }
-  // Future<dynamic> getIdcard(
-  //     String level,
-  //     String avatar,
-  //     String studentId,
-  //     ) async {
-  //   print("" + level + " " + avatar + " " + studentId + " ".toString());
-  //
-  //   final Map<String, dynamic> IdcardData = {
-  //     "level": level,
-  //     "avatar": avatar,
-  //     "studentId": studentId,
-  //
-  //
-  //   };
-  //
-  //   try {
-  //     final response = await dio.post(
-  //       'IdcardData',
-  //       data: IdcardData,
-  //     );
-  //
-  //     if (response.statusCode == 200) {
-  //       return response.data;
-  //     } else if (response.statusCode == 400) {
-  //       return   Get.snackbar(
-  //         "",
-  //         "Username already exists",
-  //         colorText: Colors.white,
-  //         backgroundColor: Colors.red,
-  //         // icon: const Icon(Icons.add_alert),
-  //       );
-  //
-  //     }else {
-  //       return null;
-  //     }
-  //   } catch (e) {
-  //     print("Error: $e");
-  //     return null;
-  //   }
-  // }
-/////////////////////////////////////////
 
+  //////////////////////////
   Future<dynamic> getComplaints(
 
       String message,

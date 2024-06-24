@@ -4,36 +4,16 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import '../Services.dart';
 import 'Idcard_Controller.dart';
+import 'image_helper.dart';
 
 class Idcard extends StatelessWidget {
-  final TextEditingController levelController = TextEditingController();
-  final TextEditingController avatarController = TextEditingController();
-  final TextEditingController studentIdController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ProfilePage(levelController: levelController),
-    );
-  }
-}
-
-class ProfilePage extends StatefulWidget {
-  final TextEditingController levelController;
-
-  ProfilePage({required this.levelController});
-
-  @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
 
 
 
 
-  
+
+
+  final imageHelper = ImageHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +65,19 @@ class _ProfilePageState extends State<ProfilePage> {
                   : Image.file(controller.image!),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed:(){ controller.pickImage();},
+                onPressed:()async {
+                  final pickedFile = await imageHelper
+                      .pickImageFromGallery();
+                  if (pickedFile.isNotEmpty) {
+                    if (pickedFile.first != null) {
+                      controller.image =
+                          File(pickedFile.first.path);
+                      controller.update();
+                    } else {
+                      print('No image selected.');
+                    }
+                  }
+                },
                 child: Text('Upload New Picture'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: mainColor,
@@ -108,3 +100,6 @@ class _ProfilePageState extends State<ProfilePage> {
     );});
   }
 }
+
+
+

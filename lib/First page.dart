@@ -14,7 +14,7 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   @override
   void initState() {
-    _loadData();
+   // _loadData();
     super.initState();
   }
 
