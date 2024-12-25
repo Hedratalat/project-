@@ -14,7 +14,7 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   @override
   void initState() {
-    _loadData();
+   // _loadData();
     super.initState();
   }
 
@@ -30,7 +30,7 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   void _launchURL() async {
-    const url = 'https://www.youtube.com/results?search_query=web+page+flutter';
+    const url = 'https://6678e07c70b58f1ca19eb66f--dynamic-choux-eeabd0.netlify.app/';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

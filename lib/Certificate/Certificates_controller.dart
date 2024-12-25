@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../Services.dart';
 import '../apis/student_api.dart';
 import 'CertificateModel.dart';
+import 'dart:io';
 class CertificatesController extends GetxController {
   StudentApi studentApi = StudentApi();
   var Certificate = CertificateModel().obs;
@@ -17,11 +18,12 @@ class CertificatesController extends GetxController {
   void onInit() {
     super.onInit();
   }
+  File? image;
 
   void fetchcertificates(BuildContext context) async {
     var response = await studentApi.getcertificatesScreen(
         usernameController.text,
-        certificateTypeController.text,
+        certificateTypeController.text
     );
 
 

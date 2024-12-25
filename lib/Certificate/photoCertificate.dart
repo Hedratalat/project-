@@ -20,7 +20,7 @@ class photoCertificate extends StatelessWidget {
           title: Text('Picture of a certificate'),
         ),
         body: Center(
-            child: Image.asset('images/certificate_image.png'),// صوره الشهاده للطالب
+            child: Image.asset('images/gggg2.jpeg',),// صوره الشهاده للطالب
             ),
        );
     }

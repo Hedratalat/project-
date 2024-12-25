@@ -12,13 +12,7 @@ class IdcardController extends GetxController {
   File? image;
   final picker = ImagePicker();
   TextEditingController nameController = TextEditingController();
-  Future<void> pickImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      image = File(pickedFile.path);
-      update;
-    }
-  }
+
 
   void confirm(BuildContext context) {
     if (image != null) {
@@ -33,8 +27,10 @@ class IdcardController extends GetxController {
               TextButton(
                 child: Text("OK"),
                 onPressed: () {
+                  fetchIdcard(context);
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
+
 
                 },
               ),
@@ -71,8 +67,9 @@ class IdcardController extends GetxController {
 
   void fetchIdcard(BuildContext context) async {
     var response = await studentApi.getIdcard(
-      nameController.text,
       image,
+      nameController.text
+
     );
 
     if (response["status"] == "success") {

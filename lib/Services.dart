@@ -35,6 +35,15 @@ class _ServicesScreenState extends State<ServicesScreen> {
         ),
         actions: [
           IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              // Logout functionality
+              // Navigate to login screen or perform logout logic
+              // For example:
+              Navigator.popUntil(context, ModalRoute.withName('/'));
+            },
+          ),
+          IconButton(
             icon: Icon(Icons.notifications),
             onPressed: () {
               showMenu(
